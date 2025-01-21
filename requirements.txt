@@ -1,0 +1,10 @@
+langchain
+langchain_chroma
+langchain_community
+langchain_huggingface
+protobuf
+python-dotenv
+unstructured
+google-generativeai
+python-docx
+streamlit
