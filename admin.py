@@ -47,7 +47,7 @@ def load_docx(file):
     documents = []
     chunks = text_splitter.split_text(full_text)
     for idx, chunk in enumerate(chunks):
-        metadata = {"source": file.name, "page_number": idx + 1, "section": "General Section"}
+        metadata = {"source": file.name, "page_number": idx + 1}
         documents.append(Document(page_content=chunk, metadata=metadata))
     os.remove(temp_file_path)
     return documents

@@ -55,7 +55,7 @@ def get_vector_db(selected_collection):
 def generate_rag_prompt(query, context, metadata):
     metadata_str = "\n".join(
         [
-            f"Source: {meta['source']} | Page: {meta.get('page_number', 'N/A')} | Section: {meta.get('section', 'N/A')}"
+            f"Source: {meta['source']} | Page: {meta.get('page_number', 'N/A')}"
             for meta in metadata
         ]
     )
@@ -76,7 +76,6 @@ def get_relevant_context_from_db(query, vector_db):
             {
                 "source": result.metadata.get("source", "N/A"),
                 "page_number": result.metadata.get("page_number", "N/A"),
-                "section": result.metadata.get("section", "N/A")
             }
             for result in search_results
         ]
@@ -117,8 +116,7 @@ for msg in st.session_state.messages:
         for meta in msg["metadata"]:
             source = meta.get("source", "N/A")
             page_number = meta.get("page_number", "N/A")
-            section = meta.get("section", "N/A")
-            st.caption(f"- **Source**: {source} | **Page**: {page_number} | **Section**: {section}")
+            st.caption(f"- **Source**: {source} | **Page**: {page_number}")
 
 
 # Initialize vector database
@@ -151,7 +149,6 @@ if user_input := st.chat_input("Type your message here..."):
         for meta in response_metadata:
             source = meta.get("source", "N/A")
             page_number = meta.get("page_number", "N/A")
-            section = meta.get("section", "N/A")
             st.caption(f"- **Source**: {source} | **Page**: {page_number}")
 
 
